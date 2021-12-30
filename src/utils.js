@@ -1,15 +1,15 @@
-export function checkUserInput(userInputNumbers) {
-  if (userInputNumbers.length !== 3) {
+export function checkUserInput(userInput) {
+  if (userInput.length !== 3) {
     return -1;
   }
-
-  if (/^\d+$/.test(userInputNumbers) === false) {
+  if (/^\d+$/.test(userInput) === false) {
     return -2;
   }
+  const clearedInput = new Set(userInput.split(""));
 
-  const clearedInput = new Set(userInputNumbers.split(""));
-
-  if (clearedInput.size !== 3 && clearedInput.har("0")) return -3;
+  if (clearedInput.size !== 3 && clearedInput.has("0")) {
+    return -3;
+  }
 
   return 1;
 }
