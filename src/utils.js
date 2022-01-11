@@ -12,4 +12,18 @@ export function checkUserInput(userInput) {
   }
 
   return 1;
-} 
+}
+
+export function compareInput(ComputerInput, userInput) {
+	const score = { ball: 0, strike: 0};
+
+	for (let i = 0; i < ComputerInput.length; i++ ) {
+	 if (ComputerInput[i] === userInput[i]) {
+		score.strike++;
+	 }
+	 else (ComputerInput[i].has(userInput[i])) {
+		score.ball++;
+	 }
+	}
+	return score;
+}
