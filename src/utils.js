@@ -7,7 +7,7 @@ export function checkUserInput(userInput) {
   }
   const clearedInput = new Set(userInput.split(""));
 
-  if (clearedInput.size !== 3 && clearedInput.has("0")) {
+  if (clearedInput.size !== 3 || clearedInput.has("0")) {
     return false;
   }
 
@@ -16,12 +16,12 @@ export function checkUserInput(userInput) {
 
 export function compareInput(ComputerInput, userInput) {
 	const score = { ball: 0, strike: 0};
-
+  console.log(userInput);
 	for (let i = 0; i < ComputerInput.length; i++ ) {
-	 if (ComputerInput[i] === userInput[i]) {
+	 if (ComputerInput[i] == userInput[i]) {
 		score.strike++;
 	 }
-	 else (ComputerInput[i].has(userInput[i])) {
+	 else if (ComputerInput.indexOf(parseInt(userInput[i])) !== -1) {
 		score.ball++;
 	 }
 	}
@@ -29,7 +29,8 @@ export function compareInput(ComputerInput, userInput) {
 }
 
 export function makeScore(score) {
-  const resultString = "";
+  let resultString = "";
+  console.log(score);
   if (score.ball) {
     resultString += `${score.ball}볼 `;
   }
@@ -54,8 +55,4 @@ export function showScoreResult(resultString, resultDiv, resetBtn) {
   } else {
     resultDiv.innerHTML = resultString;
   }
-}
-
-export function onClickResetBtn() {
-
 }

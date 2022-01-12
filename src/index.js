@@ -9,35 +9,36 @@ export default function BaseballGame() {
   resetBtn.innerHTML = "재시작";
   resetBtn.id = "game-restart-button";
 
-
-  let ComputerInput = MissionUtils.Random.pickNumberInRange(1, 9);
+  let ComputerInput = MissionUtils.Random.pickUniqueNumbersInRange(1, 9, 3); 
+  console.log('ComputerInput: ', ComputerInput);
   userInput.focus();
 
   this.play = function (computerInputNumbers, userInputNumbers) {
     return makeScore(compareInput(computerInputNumbers, userInputNumbers)); 
   };
 
-  function onSubmitUserInput() {
+  function onSubmitUserInput(e) {
+    e.preventDefault();
     if(!checkUserInput(userInput.value)) {
       alert(ERROR);
       return;
     }
-    userInput.value ="";
-    const resultString = play(ComputerInput, userInputNumbers);
+    const resultString = this.play(ComputerInput, userInput.value);
     showScoreResult(resultString, resultDiv, resetBtn);
+    userInput.value ="";
     userInput.focus();
   }
 
   function onClickResetBtn() {
-    ComputerInput = MissionUtils.Random.pickNumberInRange(1, 9);
+    ComputerInput = MissionUtils.Random.pickUniqueNumbersInRange(1, 9, 3);
+    console.log('ComputerInput: ', ComputerInput);
     resultDiv.innerHTML = "";
-    resultDiv.removeChild(resetBtn);
     userInput.value ="";
     userInput.focus();
   
   }
-  submitBtn.addEventListener('click', onSubmitUserInput);
-  userInput.addEventListener('resetBtn', onClickResetBtn);
+  submitBtn.addEventListener('click', onSubmitUserInput.bind(this));
+  resetBtn.addEventListener('click', onClickResetBtn);
 
 
 }
