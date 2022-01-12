@@ -42,3 +42,17 @@ export function makeScore(score) {
   
   return resultString;
 }
+
+export function showScoreResult(resultString, resultDiv, resetBtn) {
+  if (resultString === "3스트라이크") {
+    resultDiv.innerHTML = `
+    🎉 <b>정답을 맞추셨습니다!</b> 🎉
+    <br>
+    게임을 새로 시작하시겠습니까?
+  `;
+    resultDiv.appendChild(resetBtn);
+  } else {
+    resultDiv.innerHTML = resultString;
+  }
+
+}
