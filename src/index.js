@@ -1,4 +1,4 @@
-import { checkUserInput, compareInput } from "./utils.js";
+import { checkUserInput, compareInput, makeScore } from "./utils.js";
 
 export default function BaseballGame() {
   const ERROR = '입력이 잘못 되었습니다.';
@@ -14,8 +14,7 @@ export default function BaseballGame() {
   userInput.focus();
 
   this.play = function (computerInputNumbers, userInputNumbers) {
-    compareInput(computerInputNumbers, userInputNumbers);
-    return 
+    return makeScore(compareInput(computerInputNumbers, userInputNumbers)); 
   };
 
   function onSubmitUserInput() {
