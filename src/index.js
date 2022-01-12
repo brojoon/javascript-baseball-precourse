@@ -25,7 +25,16 @@ export default function BaseballGame() {
     userInput.value ="";
     const resultString = play(ComputerInput, userInputNumbers);
     showScoreResult(resultString, resultDiv, resetBtn);
-    
+    userInput.focus();
+  }
+
+  function onClickResetBtn() {
+    ComputerInput = MissionUtils.Random.pickNumberInRange(1, 9);
+    resultDiv.innerHTML = "";
+    resultDiv.removeChild(resetBtn);
+    userInput.value ="";
+    userInput.focus();
+  
   }
   submitBtn.addEventListener('click', onSubmitUserInput);
   userInput.addEventListener('resetBtn', onClickResetBtn);

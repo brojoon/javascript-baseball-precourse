@@ -54,5 +54,8 @@ export function showScoreResult(resultString, resultDiv, resetBtn) {
   } else {
     resultDiv.innerHTML = resultString;
   }
+}
+
+export function onClickResetBtn() {
 
 }
